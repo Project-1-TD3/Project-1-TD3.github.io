@@ -5,7 +5,7 @@
 3) The name of the branch is in the following format Users/%username%/%taskname%. <username> is the name of the dev (ex: justine, thierry, julien or radwan), task name is the name of task (no spaces, ex: js-add-to-do-list, html-create-page, css-create-styles,...)
 ## get the branch on local
 4) on local pc, type the command
-   git clone --branch git@github.com:Project-1-TD3/Project-1-TD3.github.io.git ./%taskname%
+   git clone --branch Users/%username%/%taskname% git@github.com:Project-1-TD3/Project-1-TD3.github.io.git ./%taskname%
    cd ./taskname
    code .
 ## register modifications
