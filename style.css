@@ -1,0 +1,12 @@
+:root {
+    --article-color1: #987284;
+    --article-color2: #75B9BE;
+    --article-color3: #D0D6B5;
+    --article-color4: #F9B5AC;
+    --article-color5: #EE7674;
+    --title-fontfamily: "Montserrat", sans-serif;
+    --text-fontfamili: "Roboto", sans-serif;
+    --title-fontsize: 24px;
+    --text-fontsize: 18px;
+
+}
