@@ -8,5 +8,71 @@
     --text-fontfamili: "Roboto", sans-serif;
     --title-fontsize: 24px;
     --text-fontsize: 18px;
-
 }
+
+<<<<<<< Updated upstream
+header  {
+    padding-bottom: 20px;
+    border-bottom: 1px;
+    border-color: black ;
+    border-bottom-style: solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo   {
+    width: 240px;
+    padding: 30px 0 30px 0;
+}
+
+#search-bar {
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #FFF;
+    width: 80vw;
+    height: 40px;
+    position:relative;
+    padding-right: 40px;
+}
+
+#search-bar img{
+    height: 30px;
+    margin: 5px;
+    position: absolute;
+}
+
+#search-bar input {
+    border: none;
+    background-color:transparent;
+    color: rgba(0, 0, 0, 0.54);
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    height: 100%;
+    width: 100%;
+    padding-left: 40px;
+}
+
+footer {
+=======
+}
+.footer {
+>>>>>>> Stashed changes
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    text-align: center;
+
+<<<<<<< Updated upstream
+  }
+=======
+  }
+  
+>>>>>>> Stashed changes
