@@ -10,7 +10,6 @@
     --text-fontsize: 18px;
 }
 
-<<<<<<< Updated upstream
 header  {
     padding-bottom: 20px;
     border-bottom: 1px;
@@ -57,10 +56,6 @@ header  {
 }
 
 footer {
-=======
-}
-.footer {
->>>>>>> Stashed changes
     position: fixed;
     left: 0;
     bottom: 0;
@@ -69,10 +64,4 @@ footer {
     background-color: rgb(255, 255, 255);
     color: white;
     text-align: center;
-
-<<<<<<< Updated upstream
-  }
-=======
-  }
-  
->>>>>>> Stashed changes
+}
