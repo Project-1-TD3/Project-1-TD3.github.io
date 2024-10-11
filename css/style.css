@@ -15,26 +15,61 @@
     --text-weight : 300;
 }
 
-header  {
-    padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media screen and (max-width: 768px) {
+    header  {
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-#logo   {
-    width: 130px;
-    padding: 30px 0 30px 0;
+@media screen and (min-width: 768px) {
+    header  {
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
-#search-bar {
-    border-radius: 10px;
-    border: 1px solid #000;
-    background: #FFF;
-    width: 80vw;
-    height: 40px;
-    position:relative;
-    padding-right: 40px;
+@media screen and (max-width: 768px) {
+    #search-bar {
+        border-radius: 10px;
+        border: 1px solid #000;
+        background: #FFF;
+        width: 80vw;
+        height: 40px;
+        position:relative;
+        padding-right: 40px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #search-bar {
+        border-radius: 10px;
+        border: 1px solid #000;
+        background: #FFF;
+        width: 30vw;
+        height: 40px;
+        position:relative;
+        margin-right: 8vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #logo   {
+        width: 130px;
+        padding: 30px 0 30px 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #logo   {
+        width: 130px;
+        padding: 34px 0 33px 8vW;
+    }
 }
 
 #search-bar img{
@@ -44,36 +79,90 @@ header  {
     /* elle est ou la loupe !?????!!! */
 }
 
-#search-bar input {
-    border: none;
-    background-color:transparent;
-    color: rgba(0, 0, 0, 0.54);
-    font-family: Montserrat;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: 400;
-    line-height: normal;
-    height: 100%;
-    width: 100%;
-    padding-left: 40px;
+@media screen and (max-width: 768px) {
+    #search-bar input {
+        border: none;
+        background-color:transparent;
+        color: rgba(0, 0, 0, 0.54);
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: normal;
+        height: 100%;
+        width: 100%;
+        padding-left: 40px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #search-bar input {
+        border: none;
+        background-color:transparent;
+        color: rgba(0, 0, 0, 0.54);
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: normal;
+        height: 100%;
+        width: 100%;
+        padding-right: 5vw;
+    }
 }
 
 /* le main by justine*/
 
-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+main {
+    margin-bottom: 140px;
+}
+@media screen and (max-width: 768px) {
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        gap: 27px;
+    }
 }
 
-article {
-    border-radius: 10px;
-    border: 1px solid #FFF;
-    background: var(--article-color1);
-    width: 80vw;
-    padding: 10px 10px 24px 30px;
+@media screen and (min-width: 768px) {
+    section {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 39px;
+        column-gap: 60px;
+        margin-top: 20px;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
 }
+
+
+@media screen and (max-width: 768px) {
+    article {
+        border-radius: 10px;
+        border: 1px solid #FFF;
+        background: var(--article-color1);
+        width: 80vw;
+        padding: 10px 10px 24px 30px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    article {
+        border-radius: 10px;
+        border: 1px solid #FFF;
+        background: var(--article-color1);
+        width: 80vw;
+        max-width: 320px;
+        padding: 10px 10px 24px 30px;
+    }
+}
+
 
 h3 {
     font-family: var(--title-fontfamily);
