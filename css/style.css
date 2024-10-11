@@ -17,6 +17,11 @@
 
 @media screen and (max-width: 768px) {
     header  {
+        background-color: white;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
         padding-bottom: 20px;
         display: flex;
         flex-direction: column;
@@ -26,6 +31,11 @@
 
 @media screen and (min-width: 768px) {
     header  {
+        background-color: white;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
         padding-bottom: 20px;
         display: flex;
         flex-direction: row;
@@ -113,10 +123,12 @@
 
 /* le main by justine*/
 
-main {
-    margin-bottom: 140px;
-}
 @media screen and (max-width: 768px) {
+    main {
+        margin-top: 200px;
+        margin-bottom: 140px;
+    }
+
     section {
         display: flex;
         flex-direction: column;
@@ -127,6 +139,11 @@ main {
 }
 
 @media screen and (min-width: 768px) {
+    main {
+        margin-top: 165px;
+        margin-bottom: 140px;
+    }
+
     section {
         display: flex;
         flex-direction: row;
