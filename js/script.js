@@ -1,6 +1,6 @@
 import fillNotesSection from "./tools.js";
 import initialList from "./todolist.js";
-
+;
 const footerElement = document.querySelector('footer');
 footerElement.addEventListener("click", (event) => {
 

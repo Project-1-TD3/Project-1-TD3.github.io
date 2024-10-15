@@ -3,11 +3,11 @@ const initialList = [
         title : "Course d'automne",
         elements : [
              {
-            checked : true, 
+            checked : false, 
             name : "navet" 
             },
             {
-                checked : true, 
+                checked : false, 
                 name : "brocolis" 
             }
         ]
@@ -16,11 +16,11 @@ const initialList = [
         title : "Livres à lire",
         elements : [
              {
-            checked : true, 
+            checked : false, 
             name : "Autant en emporte le vent" 
             },
             {
-                checked : true, 
+                checked : false, 
                 name : "Pokemon" 
             }
         ]
@@ -29,11 +29,11 @@ const initialList = [
         title : "Séries à voir",
         elements : [
              {
-            checked : true, 
+            checked : false, 
             name : "Les feux de l'amour" 
             },
             {
-                checked : true, 
+                checked : false, 
                 name : "Plus belle la vie" 
             }
         ]
