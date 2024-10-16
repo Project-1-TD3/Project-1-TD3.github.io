@@ -211,6 +211,7 @@ article.collapsed {
 h3 {
     font-family: var(--title-fontfamily);
     font-size: var(--title-fontsize);
+    cursor: pointer;
 }
 
 .header-element {
@@ -224,6 +225,7 @@ h3 {
 .options-button{
     height: 30px;
     align-items: center;
+    cursor: pointer;
 }
 
 ul {
@@ -234,6 +236,7 @@ ul {
 
 .checkbox {
     padding-right: 10px;
+    cursor: pointer
 }
 
 li {
@@ -259,6 +262,10 @@ footer {
     justify-content: center;
     padding: 20px 0 20px 0;
 }
+svg {
+    cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
     footer {
         display: flex;
@@ -269,5 +276,53 @@ footer {
 
     svg{
         margin-right: 20px;
+        cursor: pointer;
     }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background-color: #D9D9D980;
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px)
+  }
+
+  .show {
+    display:block;
+}
+
+.bloc-options  {
+display: flex;
+flex-direction: row;
+justify-content: end;
+align-items: start;
+}
+
+.option  {
+    font-family: var(--text-fontfamili);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.option:hover  {
+    font-family: var(--text-fontfamili);
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+    transition-duration : 400ms
 }
