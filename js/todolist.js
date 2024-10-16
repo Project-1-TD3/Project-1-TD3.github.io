@@ -2,9 +2,37 @@ const initialList = [
     {
         title : "Course d'automne",
         elements : [
-             {
+            {
             checked : false, 
             name : "navet" 
+            },
+            {
+                checked : false, 
+                name : "carotte" 
+            },
+            {
+                checked : false, 
+                name : "poireau" 
+            },
+            {
+                checked : false, 
+                name : "patate" 
+            },
+            {
+                checked : false, 
+                name : "courge" 
+            },
+            {
+                checked : false, 
+                name : "potimarron" 
+            },
+            {
+                checked : false, 
+                name : "cepes" 
+            },
+            {
+                checked : false, 
+                name : "pommes" 
             },
             {
                 checked : false, 
