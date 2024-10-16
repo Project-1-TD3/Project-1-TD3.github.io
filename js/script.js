@@ -1,13 +1,9 @@
-import fillNotesSection from "./tools.js";
+import {fillNotesSection} from "./tools.js";
 import initialList from "./todolist.js";
-;
-const footerElement = document.querySelector('footer');
-footerElement.addEventListener("click", (event) => {
+import createNewToDolist from "./addList.js";
 
-   // todo cet evenement sert a creer nouvelle liste quand tu clique dessus
-   
-   
-  });
+const footerElement = document.querySelector('svg');
+footerElement.addEventListener("click", createNewToDolist);
 
 fillNotesSection(initialList);
 

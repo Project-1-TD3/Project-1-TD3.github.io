@@ -1,4 +1,4 @@
-function fillNotesSection (toDoList) {
+ export function fillNotesSection (toDoList) {
     let html="";
     toDoList.map((element) => {
         html += fillArticle(element);
@@ -7,9 +7,9 @@ function fillNotesSection (toDoList) {
     sectionElement.innerHTML = html
 }
 
-
 function fillArticle(toDo) {
     return `<article class="collapsed">
+
                 <div class="header-element">
                 <h3>${toDo.title}</h3>
                 <img src="assets/options.png" alt="Bouton options" class="options-button">
@@ -30,4 +30,3 @@ function fillElements (elements) {
     }
     return liElementsString ;
 }
-export default fillNotesSection;
