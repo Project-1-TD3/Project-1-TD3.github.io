@@ -1,6 +1,7 @@
 const initialList = [
     {
-        title : "Course d'automne",
+        title : "Course d'automne", 
+        category : "article-color-1", // la catégorie correspond au nom de la class qui défini la couleur de fond de la liste.
         elements : [
             {
             checked : false, 
@@ -42,6 +43,7 @@ const initialList = [
     },
     {
         title : "Livres à lire",
+        category : "article-color-4",
         elements : [
              {
             checked : false, 
@@ -55,6 +57,7 @@ const initialList = [
     },
     {
         title : "Séries à voir",
+        category : "article-color-3",
         elements : [
              {
             checked : false, 
@@ -69,3 +72,4 @@ const initialList = [
 ]
 
 export default initialList;
+
