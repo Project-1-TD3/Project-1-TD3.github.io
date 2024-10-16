@@ -1,4 +1,4 @@
-function fillNotesSection (toDoList) {
+ export function fillNotesSection (toDoList) {
     let html="";
     toDoList.map((element) => {
         html += fillArticle(element);
@@ -8,7 +8,7 @@ function fillNotesSection (toDoList) {
 }
 
 
-function fillArticle(toDo) {
+export function fillArticle(toDo) {
     return `<article>
                 <div class="header-element">
                 <h3>${toDo.title}</h3>
@@ -30,4 +30,3 @@ function fillElements (elements) {
     }
     return liElementsString ;
 }
-export default fillNotesSection;
