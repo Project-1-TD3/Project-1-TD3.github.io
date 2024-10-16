@@ -7,18 +7,20 @@
     sectionElement.innerHTML = html
 }
 
-function fillArticle(toDo) {
-    return `<article class="collapsed">
-
-                <div class="header-element">
-                <h3>${toDo.title}</h3>
-                <img src="assets/options.png" alt="Bouton options" class="options-button">
-                </div>
-                <ul>${fillElements(toDo.elements)}
-                </ul>
+export function fillArticle(toDo) {
+    return `<article class="collapsed ${toDo.category}">
+                ${fillInnerArticle(toDo)}
             </article>`;
-    }
+}
 
+export function fillInnerArticle(toDo) {
+    return `<div class="header-element">
+            <h3>${toDo.title}</h3>
+            <img src="assets/options.png" alt="Bouton options" class="options-button">
+            </div>
+            <ul>${fillElements(toDo.elements)}
+            </ul>`;
+}
 
 function fillElements (elements) {
     let liElementsString = "";
