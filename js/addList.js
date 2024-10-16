@@ -1,5 +1,5 @@
 //fonction d'ajout de liste via le bouton plus.
-import {addClickEventOnListTitle, fillArticle, setClickOnArticle} from "./tools.js"; 
+import {fillArticle, setClickOnArticle} from "./tools.js"; 
 
 function createNewToDolist (){
     const newItem = document.createElement("article");
