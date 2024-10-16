@@ -32,3 +32,24 @@ function fillElements (elements) {
     }
     return liElementsString ;
 }
+export function setClickOnArticle (articleElement)    {
+    const h3TitleElement = articleElement.querySelector("h3");
+    h3TitleElement.addEventListener("click", (event) => {
+        const divElement = event.target.parentElement;
+        const articleParentElement = divElement.parentElement;
+        articleParentElement.classList.toggle("collapsed");
+     })
+}
+
+export function addClickEventOnListTitle ()    {
+    const articleElements = document.querySelectorAll("article h3");
+    console.log(articleElements);
+    
+    for (const articleElement of articleElements) {
+     articleElement.addEventListener("click", (event) => {
+           const divElement = event.target.parentElement;
+           const articleParentElement = divElement.parentElement;
+           articleParentElement.classList.toggle("collapsed");
+        })
+    }
+}
