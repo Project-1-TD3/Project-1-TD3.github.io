@@ -15,6 +15,26 @@
     --text-weight : 300;
 }
 
+.article-color-1 {
+    background-color: var(--article-color1);
+}
+
+.article-color-2 {
+    background-color: var(--article-color2);
+}
+
+.article-color-3 {
+    background-color: var(--article-color3);
+}
+
+.article-color-4 {
+    background-color: var(--article-color4);
+}
+
+.article-color-5 {
+    background-color: var(--article-color5);
+}
+
 @media screen and (max-width: 768px) {
     header  {
         background-color: white;
@@ -119,11 +139,9 @@
     height: 30px;
     margin: 5px;
     position: absolute;
-    /* elle est ou la loupe !?????!!! */
+    
 }
 
-
-/* le main by justine*/
 
 @media screen and (max-width: 768px) {
     main {
