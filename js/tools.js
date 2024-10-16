@@ -1,3 +1,5 @@
+ import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement } from "./index-manager.js";
+
  export function fillNotesSection (toDoList) {
     let html="";
     toDoList.map((element) => {
@@ -38,6 +40,8 @@ export function setClickOnArticle (articleElement)    {
         const divElement = event.target.parentElement;
         const articleParentElement = divElement.parentElement;
         articleParentElement.classList.toggle("collapsed");
+
+        console.log(`article with ${event.target.innerText} is at ${getIndexFromArticleElement(articleParentElement)} in initialList.`);
      })
 }
 
@@ -50,6 +54,27 @@ export function addClickEventOnListTitle ()    {
            const divElement = event.target.parentElement;
            const articleParentElement = divElement.parentElement;
            articleParentElement.classList.toggle("collapsed");
+
+           console.log(`article with ${event.target.innerText} is at ${getIndexFromArticleElement(articleParentElement)} in initialList.`);
+        })
+    }
+}
+
+export function addClickOnTask() {
+    const htmlElements = document.querySelectorAll("article img.checkbox, article span");
+    console.log(htmlElements);
+    
+    for (const htmlElement of htmlElements) {
+        htmlElement.addEventListener("click", (event) => {
+            const indexObject = getListObjectAndIndexOfTaskElement(event.target);
+            indexObject.listObject.elements[indexObject.indexOfTask].checked = !indexObject.listObject.elements[indexObject.indexOfTask].checked;
+            const liElement = event.target.parentElement;
+            if (liElement !== null) {
+                const imgElement = liElement.querySelector("img");
+                imgElement.src = indexObject.listObject.elements[indexObject.indexOfTask].checked ? "./assets/checkbox-filled.svg" : "./assets/checkbox-empty.svg";
+                const spanElement = liElement.querySelector("span");
+                spanElement.classList.toggle("checked");
+            }
         })
     }
 }

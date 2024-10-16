@@ -245,6 +245,9 @@ li {
     align-items: center;
 }
 
+li>span.checked {
+    text-decoration: line-through;
+}
 
 footer {
     position: fixed;
