@@ -9,7 +9,7 @@ function fillNotesSection (toDoList) {
 
 
 function fillArticle(toDo) {
-    return `<article>
+    return `<article class="collapsed">
                 <div class="header-element">
                 <h3>${toDo.title}</h3>
                 <img src="assets/options.png" alt="Bouton options" class="options-button">
