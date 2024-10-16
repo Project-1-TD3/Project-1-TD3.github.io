@@ -134,7 +134,7 @@
     section {
         display: flex;
         flex-direction: column;
-        align-items: top;
+        align-items: center;
         margin-top: 20px;
         gap: 27px;
     }
@@ -150,7 +150,7 @@
         display: flex;
         flex-direction: row;
         justify-content: start;
-        align-items: top;
+        align-items: start;
         flex-wrap: wrap;
         row-gap: 39px;
         column-gap: 60px;
@@ -165,9 +165,8 @@
     article {
         border-radius: 10px;
         border: 1px solid #FFF;
-        background-color: var(--article-color1);
+        background-color: var(--article-color4);
         width: 80vw;
-        max-height: 10000px;
         padding: 10px 10px 10px 30px;
         overflow: visible;
     }
@@ -177,10 +176,9 @@
     article {
         border-radius: 10px;
         border: 1px solid #FFF;
-        background-color: var(--article-color1);
+        background-color: var(--article-color4);
         width: 80vw;
         max-width: 320px;
-        max-height: 10000px;
         padding: 10px 10px 10px 30px;
         overflow: visible;
     }
@@ -189,10 +187,7 @@
 article.collapsed {
     max-height: calc(19px + 30px);
     overflow: hidden;
-}
-
-article {
-    transition: 3s linear;
+    transition: max-height 1.5s ease-in-out;
 }
 
 h3 {
@@ -216,6 +211,7 @@ h3 {
 ul {
     list-style-type: none;
     padding-left: 0;
+    overflow-y: hidden;
 }
 
 .checkbox {
