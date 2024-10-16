@@ -1,5 +1,5 @@
 //fonction d'ajout de liste via le bouton plus.
-import {fillArticle} from "./tools.js"; 
+import {addClickEventOnListTitle, fillArticle, setClickOnArticle} from "./tools.js"; 
 
 function createNewToDolist (){
     const newItem = document.createElement("article");
@@ -9,23 +9,20 @@ function createNewToDolist (){
            {
           checked : false, 
           name : "New task" 
-          }
-         
+          }      
       ]
-   }; 
+   };
    let toDoArticle = fillArticle(toDo);
    toDoArticle = toDoArticle.replace("<article>","");
    toDoArticle = toDoArticle.replace("</article>","");
-
-
    
-
     newItem.innerHTML = toDoArticle;
  
     const sectionToDo = document.querySelector("section.notes");
 
     sectionToDo.prepend(newItem);
  
- 
+    setClickOnArticle(newItem);
   }
+
   export default createNewToDolist;
