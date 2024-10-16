@@ -9,6 +9,13 @@ footerElement.addEventListener("click", (event) => {
    
   });
 
-
-
 fillNotesSection(initialList);
+
+const articleElements = document.querySelectorAll("article h3");
+for (const articleElement of articleElements) {
+ articleElement.addEventListener("click", (event) => {
+       const divElement = event.target.parentElement;
+       const articleParentElement = divElement.parentElement;
+       articleParentElement.classList.toggle("collapsed");
+    })
+}
