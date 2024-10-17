@@ -1,4 +1,4 @@
-import {fillNotesSection, addClickEventOnListTitle, addClickOnTask, addClickEventOnOptionsButton} from "./tools.js";
+import {fillNotesSection, addClickEventOnListTitle, addClickOnTask, addClickEventOnOptionsButton, addEditEvents} from "./tools.js";
 import initialList from "./todolist.js";
 import createNewToDolist from "./addList.js";
 
@@ -10,3 +10,4 @@ fillNotesSection(initialList);
 addClickEventOnListTitle();
 addClickOnTask();
 addClickEventOnOptionsButton();
+addEditEvents();

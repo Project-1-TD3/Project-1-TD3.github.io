@@ -122,3 +122,51 @@ export function addClickOnTask() {
     }
 }
 
+//test justine : modifier le contenu
+
+export function makeNoteEditable(articleElement) {
+    const title = articleElement.querySelector('h3');
+    const tasks = articleElement.querySelectorAll('li span');
+
+    title.contentEditable = true;
+    tasks.forEach(task => task.contentEditable = true);
+
+    articleElement.classList.add('editing');
+}
+
+export function saveNote(articleElement) {
+    const title = articleElement.querySelector('h3');
+    const tasks = articleElement.querySelectorAll('li span');
+
+    title.contentEditable = false;
+    tasks.forEach(task => task.contentEditable = false);
+
+    articleElement.classList.remove('editing');
+
+const index = getIndexFromArticleElement(articleElement);
+    const listObject = initialList[index];
+    listObject.title = title.textContent;
+    listObject.elements = Array.from(tasks).map((task, i) => ({
+        checked: listObject.elements[i].checked,
+        name: task.textContent
+    }));
+}
+
+    export function addEditEvents() {
+        const articlesElements = document.querySelectorAll("article");
+        
+        for (const articleElement of articlesElements) {
+            articleElement.addEventListener("click", (event) => {
+                if (!event.target.closest('.options-button')) {
+                    makeNoteEditable(articleElement);
+                }
+            });
+    
+            articleElement.addEventListener("keydown", (event) => {
+                if (event.key === 'Enter' && !event.shiftKey && articleElement.classList.contains('editing')) {
+                    event.preventDefault();
+                    saveNote(articleElement);
+                }
+            });
+        }
+    }
