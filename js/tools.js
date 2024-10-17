@@ -1,4 +1,5 @@
  import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement } from "./index-manager.js";
+import { getToDoLists } from "./todolist.js";
 
  export function fillNotesSection (toDoList) {
     let html="";
@@ -45,7 +46,12 @@ function fillElements (elements) {
     }
     return liElementsString ;
 }
-export function setClickOnArticle (articleElement)    {
+
+/**
+ * sets click event on article tag for expand or collapse a list.
+ * @param {*} articleElement the HTML element of the list
+ */
+export function setClickForExpandCollapseOnArticle (articleElement)    {
     const h3TitleElement = articleElement.querySelector("h3");
     h3TitleElement.addEventListener("click", (event) => {
         const divElement = event.target.parentElement;
@@ -56,7 +62,10 @@ export function setClickOnArticle (articleElement)    {
      })
 }
 
-export function addClickEventOnListTitle ()    {
+/**
+ * add click events on articles tag for expand or collapse lists.
+ */
+export function addClickForExpandCollapseOnArticles ()    {
     const articleElements = document.querySelectorAll("article h3");
     console.log(articleElements);
     
@@ -100,22 +109,55 @@ export function setClickOnOptions (optionElement)    {
     });
 }
 
+/**
+ * Sets click event on task elements in the list for check/uncheck tasks.
+ * @param {*} articleElement 
+ */
+export function setClickOnTask(articleElement) {
+    const htmlElements = articleElement.querySelectorAll("img.checkbox, span");
+    console.log(htmlElements);
+
+    for (const htmlElement of htmlElements) {
+        addClickEventOnTask(htmlElement);
+    }
+}
+
+/**
+ * add click events on task elements in the list for check/uncheck tasks.
+ */
 export function addClickOnTask() {
     const htmlElements = document.querySelectorAll("article img.checkbox, article span");
     console.log(htmlElements);
     
     for (const htmlElement of htmlElements) {
-        htmlElement.addEventListener("click", (event) => {
-            const indexObject = getListObjectAndIndexOfTaskElement(event.target);
-            indexObject.listObject.elements[indexObject.indexOfTask].checked = !indexObject.listObject.elements[indexObject.indexOfTask].checked;
-            const liElement = event.target.parentElement;
-            if (liElement !== null) {
-                const imgElement = liElement.querySelector("img");
-                imgElement.src = indexObject.listObject.elements[indexObject.indexOfTask].checked ? "./assets/checkbox-filled.svg" : "./assets/checkbox-empty.svg";
-                const spanElement = liElement.querySelector("span");
-                spanElement.classList.toggle("checked");
-            }
-        })
+        addClickEventOnTask(htmlElement);
     }
 }
 
+/**
+ * Stores list of todo lists under navigator.
+ */
+export function saveInitialList() {
+    window.localStorage.setItem("to-do-lists", JSON.stringify(initialList));
+}
+
+function addClickEventOnTask(htmlElement) {
+    htmlElement.addEventListener("click", (event) => {
+        const indexObject = getListObjectAndIndexOfTaskElement(event.target);
+        indexObject.listObject.elements[indexObject.indexOfTask].checked = !indexObject.listObject.elements[indexObject.indexOfTask].checked;
+        const liElement = event.target.parentElement;
+        if (liElement !== null) {
+            const imgElement = liElement.querySelector("img");
+            imgElement.src = indexObject.listObject.elements[indexObject.indexOfTask].checked ? "./assets/checkbox-filled.svg" : "./assets/checkbox-empty.svg";
+            const spanElement = liElement.querySelector("span");
+            spanElement.classList.toggle("checked");
+
+            saveInitialList();
+        }
+    })
+}
+
+/**
+ * THe list of todo lists.
+ */
+export let initialList = getToDoLists();
