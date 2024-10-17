@@ -17,23 +17,20 @@ export function fillArticle(toDo) {
 
 export function fillInnerArticle(toDo) {
     return `<div class="header-element">
-            <h3>${toDo.title}</h3>
-            <div class= "bloc-options">
-            <div class= "dropbtn">
-            <img  src="assets/options.png" alt="Bouton options" class="options-button">
+                <h3>${toDo.title}</h3>
+                <div class= "bloc-options">
+                    <div class= "dropbtn">
+                        <img  src="assets/options.png" alt="Bouton options" class="options-button">
+                    </div>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li class="option" >créer une catégorie</li>
+                            <li class="option">modifier le contenu</li>
+                            <li class="option">supprimer la liste</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="dropdown-content">
-            <ul>
-            <li class="option" >créer une catégorie</li>
-            <li class="option">modifier le contenu</li>
-            <li class="option">supprimer la liste</li>
-            </ul>
-            </div>
-            </div>
-            </div>
-            <div class="dropdown">
-  
-</div
             <ul>${fillElements(toDo.elements)}
             </ul>`;
 }
