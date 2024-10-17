@@ -197,14 +197,16 @@ export function saveNote(articleElement) {
 }
 
 export function addEditEvents() {
-    const modifyContentMenuElement = document.querySelector(".dropdown-content .option:nth-child(2)");
+    const modifyContentMenuElements = document.querySelectorAll(".dropdown-content .option:nth-child(2)");
     
-    modifyContentMenuElement.addEventListener("click", (event) => {
-        if (!event.target.closest('.options-button')) {
-            const greatGrandParentElement = greatGrandParent(event.target);
-            const articleElement = grandParent(greatGrandParentElement);
-            makeNoteEditable(articleElement);
-        }
+    modifyContentMenuElements.forEach(modifyContentMenuElement => {
+        modifyContentMenuElement.addEventListener("click", (event) => {
+            if (!event.target.closest('.options-button')) {
+                const greatGrandParentElement = greatGrandParent(event.target);
+                const articleElement = grandParent(greatGrandParentElement);
+                makeNoteEditable(articleElement);
+            }
+        });
     });
 }
 
@@ -243,8 +245,11 @@ const deleteOption = articleElement.querySelector(".dropdown-content .option:nth
     deleteOption.addEventListener("click", (event) => {
         if (confirm("Voulez-vous vraiment supprimer cette liste ?")) {
             const article = event.target.closest('article');
-            article.remove();
-        }
+            const index = getIndexFromArticleElement(articleElement);
+            initialList.splice(index, 1);
+            articleElement.remove();
+            saveInitialList();
+}
     });
 }
 
@@ -256,8 +261,11 @@ export function addClickEventOnDeleteOption() {
         deleteOption.addEventListener("click", (event) => {
             const articleElement = event.target.closest('article');
                 if (confirm("Voulez-vous vraiment supprimer cette liste ?")) {
+                    const index = getIndexFromArticleElement(articleElement);
+                    initialList.splice(index, 1);
                     articleElement.remove();
-                    }
-                })
+                    saveInitialList();
+                }
+            })
         };
     };
