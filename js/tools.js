@@ -41,7 +41,7 @@ function fillElements (elements) {
     for( const element of elements) {
         liElementsString += `<li>
                         <img src="${element.checked ? "./assets/checkbox-filled.svg" : "./assets/checkbox-empty.svg"}" alt="checkbox-empty" class="checkbox">
-                        <span>${element.name}</span>
+                        <span${element.checked ? " class=\"checked\"" : ""}>${element.name}</span>
                     </li>`
     }
     return liElementsString ;
@@ -143,10 +143,11 @@ export function saveInitialList() {
 
 function addClickEventOnTask(htmlElement) {
     htmlElement.addEventListener("click", (event) => {
-        const indexObject = getListObjectAndIndexOfTaskElement(event.target);
-        indexObject.listObject.elements[indexObject.indexOfTask].checked = !indexObject.listObject.elements[indexObject.indexOfTask].checked;
         const liElement = event.target.parentElement;
         if (liElement !== null) {
+            const indexObject = getListObjectAndIndexOfTaskElement(event.target);
+
+            indexObject.listObject.elements[indexObject.indexOfTask].checked = !indexObject.listObject.elements[indexObject.indexOfTask].checked;
             const imgElement = liElement.querySelector("img");
             imgElement.src = indexObject.listObject.elements[indexObject.indexOfTask].checked ? "./assets/checkbox-filled.svg" : "./assets/checkbox-empty.svg";
             const spanElement = liElement.querySelector("span");
