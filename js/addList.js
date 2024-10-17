@@ -1,5 +1,5 @@
 //fonction d'ajout de liste via le bouton plus.
-import {fillInnerArticle, setClickOnArticle, setClickOnOptions} from "./tools.js"; 
+import {fillInnerArticle, setClickForExpandCollapseOnArticle, setClickOnOptions, setClickOnTask, saveInitialList, initialList} from "./tools.js"; 
 import {colorCategories} from "./color-categories.js";
 
 function createNewToDolist (){
@@ -14,6 +14,9 @@ function createNewToDolist (){
           }      
       ]
    };
+
+   initialList.unshift(toDo);
+
    newItem.classList.add(toDo.category);
    newItem.classList.add("collapsed");
    const toDoArticle = fillInnerArticle(toDo);
@@ -23,9 +26,12 @@ function createNewToDolist (){
 
     sectionToDo.prepend(newItem);
  
-    setClickOnArticle(newItem);
+    setClickForExpandCollapseOnArticle(newItem);
     setClickOnOptions(newItem);
+    setClickOnTask(newItem);
+    saveInitialList();
   }
+
   function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colorCategories.length);
     return colorCategories[randomIndex];
