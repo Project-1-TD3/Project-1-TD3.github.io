@@ -1,4 +1,4 @@
- import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement } from "./index-manager.js";
+import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement, greatGrandParent, grandParent } from "./index-manager.js";
 import { getToDoLists } from "./todolist.js";
 
  export function fillNotesSection (toDoList) {
@@ -114,7 +114,7 @@ export function setClickOnOptions (optionElement)    {
  * @param {*} articleElement 
  */
 export function setClickOnTask(articleElement) {
-    const htmlElements = articleElement.querySelectorAll("img.checkbox, span");
+    const htmlElements = articleElement.querySelectorAll("img.checkbox");
     console.log(htmlElements);
 
     for (const htmlElement of htmlElements) {
@@ -126,13 +126,88 @@ export function setClickOnTask(articleElement) {
  * add click events on task elements in the list for check/uncheck tasks.
  */
 export function addClickOnTask() {
-    const htmlElements = document.querySelectorAll("article img.checkbox, article span");
+    const htmlElements = document.querySelectorAll("article img.checkbox");
     console.log(htmlElements);
     
     for (const htmlElement of htmlElements) {
         addClickEventOnTask(htmlElement);
     }
 }
+
+//test justine : modifier le contenu
+
+function handleTaskKeydown(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        const greatGrandParentElement = greatGrandParent(event.target);
+        if (greatGrandParentElement.classList.contains('editing')) {
+            event.preventDefault();
+            saveNote(greatGrandParentElement);
+        }
+    }
+}
+
+function handleTitleKeydown(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        const grandParentElement = grandParent(event.target);
+        if (grandParentElement.classList.contains('editing')) {
+            event.preventDefault();
+            saveNote(grandParentElement);
+        }
+    }
+}
+
+export function makeNoteEditable(articleElement) {
+    const title = articleElement.querySelector('h3');
+    const tasks = articleElement.querySelectorAll('li span');
+
+    title.contentEditable = true;
+    title.addEventListener("keydown", handleTitleKeydown);
+
+    tasks.forEach(task => {
+        task.contentEditable = true;
+        task.addEventListener("keydown", handleTaskKeydown);
+    });
+
+    articleElement.classList.add('editing');
+}
+
+export function saveNote(articleElement) {
+    const title = articleElement.querySelector('h3');
+    const tasks = articleElement.querySelectorAll('li span');
+
+    title.contentEditable = false;
+    title.removeEventListener("keydown", handleTitleKeydown);
+    tasks.forEach(task => {
+        task.contentEditable = false;
+        task.removeEventListener("keydown", handleTaskKeydown);
+    });
+  
+
+    articleElement.classList.remove('editing');
+
+    const index = getIndexFromArticleElement(articleElement);
+    const listObject = initialList[index];
+    listObject.title = title.textContent;
+    listObject.elements = Array.from(tasks).map((task, i) => ({
+        checked: listObject.elements[i].checked,
+        name: task.textContent
+    }));
+
+    saveInitialList(initialList);
+}
+
+export function addEditEvents() {
+    const modifyContentMenuElement = document.querySelector(".dropdown-content .option:nth-child(2)");
+    
+    modifyContentMenuElement.addEventListener("click", (event) => {
+        if (!event.target.closest('.options-button')) {
+            const greatGrandParentElement = greatGrandParent(event.target);
+            const articleElement = grandParent(greatGrandParentElement);
+            makeNoteEditable(articleElement);
+        }
+    });
+}
+
 
 /**
  * Stores list of todo lists under navigator.

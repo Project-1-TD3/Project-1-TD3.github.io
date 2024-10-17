@@ -329,3 +329,15 @@ align-items: start;
     cursor: pointer;
     transition-duration : 400ms
 }
+
+article.editing {
+    box-shadow: 00px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+article.editing h3,
+article.editing li span {
+    background-color: rgba(0,0,0,0.2);
+    outline: none;
+    padding: 2px;
+    border-radius: 5px;
+}
