@@ -65,7 +65,7 @@ function hasClass(htmlElement, className) {
     return htmlElement.classList.contains(className);
 }
 
-function grandParent(htmlElement) {
+export function grandParent(htmlElement) {
     const parentElement = htmlElement.parentElement;
     if (parentElement !== null) {
         return parentElement.parentElement;
@@ -74,7 +74,7 @@ function grandParent(htmlElement) {
     return null;
 }
 
-function greatGrandParent(htmlElement) {
+export function greatGrandParent(htmlElement) {
     const grandParentElement = grandParent(htmlElement);
     if (grandParentElement !== null) {
         return grandParentElement.parentElement;

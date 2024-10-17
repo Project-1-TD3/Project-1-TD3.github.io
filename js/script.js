@@ -1,4 +1,4 @@
-import {fillNotesSection, addClickForExpandCollapseOnArticles, addClickOnTask, addClickEventOnOptionsButton,saveInitialList, initialList, addEditEvents} from "./tools.js";
+import {fillNotesSection, addClickForExpandCollapseOnArticles, addClickOnTask, addClickEventOnOptionsButton,saveInitialList, initialList, addEditEvents, makeNoteEditable} from "./tools.js";
 import createNewToDolist from "./addList.js";
 
 const footerElement = document.querySelector('svg');

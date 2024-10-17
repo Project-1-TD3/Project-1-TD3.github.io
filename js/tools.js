@@ -1,4 +1,4 @@
- import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement } from "./index-manager.js";
+import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement, greatGrandParent, grandParent } from "./index-manager.js";
 import { getToDoLists } from "./todolist.js";
 
  export function fillNotesSection (toDoList) {
@@ -136,12 +136,35 @@ export function addClickOnTask() {
 
 //test justine : modifier le contenu
 
+function (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        const greatGrandParentElement = greatGrandParent(event.target);
+        const parentElement = greatGrandParentElement.parentElement;
+        if (parentElement.classList.contains('editing')) {
+            event.preventDefault();
+            saveNote(parentElement);
+        }
+    }
+}
 export function makeNoteEditable(articleElement) {
     const title = articleElement.querySelector('h3');
     const tasks = articleElement.querySelectorAll('li span');
 
     title.contentEditable = true;
-    tasks.forEach(task => task.contentEditable = true);
+    title.addEventListener("keydown", (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            const grandParentElement = grandParent(event.target);
+            if (grandParentElement.classList.contains('editing')) {
+                event.preventDefault();
+                saveNote(grandParentElement);
+            }
+        }
+    });
+
+    tasks.forEach(task => {
+        task.contentEditable = true;
+        task.addEventListener("keydown", handleTaskKeydown);
+    });
 
     articleElement.classList.add('editing');
 }
@@ -151,7 +174,12 @@ export function saveNote(articleElement) {
     const tasks = articleElement.querySelectorAll('li span');
 
     title.contentEditable = false;
-    tasks.forEach(task => task.contentEditable = false);
+    title.removeEventListener("keydown");
+    tasks.forEach(task => {
+        task.contentEditable = false;
+        task.removeEventListener("keydown");
+    });
+  
 
     articleElement.classList.remove('editing');
 
@@ -165,23 +193,17 @@ const index = getIndexFromArticleElement(articleElement);
 }
 
     export function addEditEvents() {
-        const articlesElements = document.querySelectorAll(".dropdown-content .option:nth-child(2)");
+        const modifyContentMenuElement = document.querySelector(".dropdown-content .option:nth-child(2)");
         
-        for (const articleElement of articlesElements) {
-            articleElement.addEventListener("click", (event) => {
-                if (!event.target.closest('.options-button')) {
-                    makeNoteEditable(articleElement);
-                }
-            });
-    
-            articleElement.addEventListener("keydown", (event) => {
-                if (event.key === 'Enter' && !event.shiftKey && articleElement.classList.contains('editing')) {
-                    event.preventDefault();
-                    saveNote(articleElement);
-                }
-            });
-        }
+        modifyContentMenuElement.addEventListener("click", (event) => {
+            if (!event.target.closest('.options-button')) {
+                const greatGrandParentElement = greatGrandParent(event.target);
+                const articleElement = grandParent(greatGrandParentElement);
+                makeNoteEditable(articleElement);
+            }
+        });
     }
+
 
 /**
  * Stores list of todo lists under navigator.
