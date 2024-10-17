@@ -5,6 +5,7 @@ function createNewToDolist (){
     const newItem = document.createElement("article");
     const toDo =   {
       title : "New list",
+      category : getRandomColor(),
       elements : [
            {
           checked : false, 
@@ -12,6 +13,8 @@ function createNewToDolist (){
           }      
       ]
    };
+   newItem.classList.add(toDo.category);
+   newItem.classList.add("collapsed");
    const toDoArticle = fillInnerArticle(toDo);
     newItem.innerHTML = toDoArticle;
  
@@ -22,5 +25,10 @@ function createNewToDolist (){
     setClickOnArticle(newItem);
     setClickOnOptions(newItem);
   }
+  function getRandomColor() {
+    const randomIndex = Math.floor(Math.random() * colorCategories.length);
+    return colorCategories[randomIndex];
+}
+
 
   export default createNewToDolist;

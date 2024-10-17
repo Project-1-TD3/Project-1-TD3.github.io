@@ -1,4 +1,4 @@
-import {fillNotesSection, addClickEventOnListTitle, addClickEventOnOptionsButton} from "./tools.js";
+import {fillNotesSection, addClickEventOnListTitle, addClickOnTask, addClickEventOnOptionsButton} from "./tools.js";
 import initialList from "./todolist.js";
 import createNewToDolist from "./addList.js";
 
@@ -7,7 +7,6 @@ footerElement.addEventListener("click", createNewToDolist);
 
 
 fillNotesSection(initialList);
-
 addClickEventOnListTitle();
-
+addClickOnTask();
 addClickEventOnOptionsButton();

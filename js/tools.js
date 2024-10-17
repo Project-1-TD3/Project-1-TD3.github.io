@@ -1,3 +1,5 @@
+ import { getIndexFromArticleElement, getListObjectAndIndexOfTaskElement } from "./index-manager.js";
+
  export function fillNotesSection (toDoList) {
     let html="";
     toDoList.map((element) => {
@@ -52,6 +54,8 @@ export function setClickOnArticle (articleElement)    {
         const divElement = event.target.parentElement;
         const articleParentElement = divElement.parentElement;
         articleParentElement.classList.toggle("collapsed");
+
+        console.log(`article with ${event.target.innerText} is at ${getIndexFromArticleElement(articleParentElement)} in initialList.`);
      })
 }
 
@@ -64,6 +68,8 @@ export function addClickEventOnListTitle ()    {
            const divElement = event.target.parentElement;
            const articleParentElement = divElement.parentElement;
            articleParentElement.classList.toggle("collapsed");
+
+           console.log(`article with ${event.target.innerText} is at ${getIndexFromArticleElement(articleParentElement)} in initialList.`);
         })
     }
 }
@@ -81,18 +87,38 @@ export function addClickEventOnOptionsButton() {
         // Fermer le menu dropdown quand la souris sors de l'élément
         dropdown.addEventListener("mouseleave", () => {
                 dropdown.classList.remove("show");
-            })
-        });
-    }}
+        })
+    });
+}}
 
-    // Fonction pour afficher/cacher le menu d'options dans les to-do ajoutées
-    export function setClickOnOptions (optionElement)    {
-        const optionsElement = optionElement.querySelector(".options-button");
-        optionsElement.addEventListener("click", (event) => {
+// Fonction pour afficher/cacher le menu d'options dans les to-do ajoutées
+export function setClickOnOptions (optionElement)    {
+    const optionsElement = optionElement.querySelector(".options-button");
+    optionsElement.addEventListener("click", (event) => {
         const dropdown = event.target.closest(".bloc-options").querySelector(".dropdown-content");
         dropdown.classList.toggle("show");
         dropdown.addEventListener("mouseleave", () => {
-        dropdown.classList.remove("show");
-            })
+            dropdown.classList.remove("show");
+        });
+    });
+}
+
+export function addClickOnTask() {
+    const htmlElements = document.querySelectorAll("article img.checkbox, article span");
+    console.log(htmlElements);
+    
+    for (const htmlElement of htmlElements) {
+        htmlElement.addEventListener("click", (event) => {
+            const indexObject = getListObjectAndIndexOfTaskElement(event.target);
+            indexObject.listObject.elements[indexObject.indexOfTask].checked = !indexObject.listObject.elements[indexObject.indexOfTask].checked;
+            const liElement = event.target.parentElement;
+            if (liElement !== null) {
+                const imgElement = liElement.querySelector("img");
+                imgElement.src = indexObject.listObject.elements[indexObject.indexOfTask].checked ? "./assets/checkbox-filled.svg" : "./assets/checkbox-empty.svg";
+                const spanElement = liElement.querySelector("span");
+                spanElement.classList.toggle("checked");
+            }
         })
     }
+}
+
