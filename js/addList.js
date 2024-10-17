@@ -31,6 +31,7 @@ function createNewToDolist (){
     setClickOnTask(newItem);
     setClickOnDeleteOption(newItem);
     saveInitialList();
+    setNewTask(newItem);
   }
 
   function getRandomColor() {
