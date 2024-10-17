@@ -114,7 +114,7 @@ export function setClickOnOptions (optionElement)    {
  * @param {*} articleElement 
  */
 export function setClickOnTask(articleElement) {
-    const htmlElements = articleElement.querySelectorAll("img.checkbox, span");
+    const htmlElements = articleElement.querySelectorAll("img.checkbox");
     console.log(htmlElements);
 
     for (const htmlElement of htmlElements) {
@@ -126,7 +126,7 @@ export function setClickOnTask(articleElement) {
  * add click events on task elements in the list for check/uncheck tasks.
  */
 export function addClickOnTask() {
-    const htmlElements = document.querySelectorAll("article img.checkbox, article span");
+    const htmlElements = document.querySelectorAll("article img.checkbox");
     console.log(htmlElements);
     
     for (const htmlElement of htmlElements) {
@@ -165,7 +165,7 @@ const index = getIndexFromArticleElement(articleElement);
 }
 
     export function addEditEvents() {
-        const articlesElements = document.querySelectorAll("article");
+        const articlesElements = document.querySelectorAll(".dropdown-content .option:nth-child(2)");
         
         for (const articleElement of articlesElements) {
             articleElement.addEventListener("click", (event) => {

@@ -331,13 +331,13 @@ align-items: start;
 }
 
 article.editing {
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 00px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 article.editing h3,
 article.editing li span {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.2);
     outline: none;
     padding: 2px;
-    border-radius: 3px;
+    border-radius: 5px;
 }
