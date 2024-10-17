@@ -136,30 +136,32 @@ export function addClickOnTask() {
 
 //test justine : modifier le contenu
 
-function (event) => {
+function handleTaskKeydown(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
         const greatGrandParentElement = greatGrandParent(event.target);
-        const parentElement = greatGrandParentElement.parentElement;
-        if (parentElement.classList.contains('editing')) {
+        if (greatGrandParentElement.classList.contains('editing')) {
             event.preventDefault();
-            saveNote(parentElement);
+            saveNote(greatGrandParentElement);
         }
     }
 }
+
+function handleTitleKeydown(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        const grandParentElement = grandParent(event.target);
+        if (grandParentElement.classList.contains('editing')) {
+            event.preventDefault();
+            saveNote(grandParentElement);
+        }
+    }
+}
+
 export function makeNoteEditable(articleElement) {
     const title = articleElement.querySelector('h3');
     const tasks = articleElement.querySelectorAll('li span');
 
     title.contentEditable = true;
-    title.addEventListener("keydown", (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            const grandParentElement = grandParent(event.target);
-            if (grandParentElement.classList.contains('editing')) {
-                event.preventDefault();
-                saveNote(grandParentElement);
-            }
-        }
-    });
+    title.addEventListener("keydown", handleTitleKeydown);
 
     tasks.forEach(task => {
         task.contentEditable = true;
@@ -174,35 +176,37 @@ export function saveNote(articleElement) {
     const tasks = articleElement.querySelectorAll('li span');
 
     title.contentEditable = false;
-    title.removeEventListener("keydown");
+    title.removeEventListener("keydown", handleTitleKeydown);
     tasks.forEach(task => {
         task.contentEditable = false;
-        task.removeEventListener("keydown");
+        task.removeEventListener("keydown", handleTaskKeydown);
     });
   
 
     articleElement.classList.remove('editing');
 
-const index = getIndexFromArticleElement(articleElement);
+    const index = getIndexFromArticleElement(articleElement);
     const listObject = initialList[index];
     listObject.title = title.textContent;
     listObject.elements = Array.from(tasks).map((task, i) => ({
         checked: listObject.elements[i].checked,
         name: task.textContent
     }));
+
+    saveInitialList(initialList);
 }
 
-    export function addEditEvents() {
-        const modifyContentMenuElement = document.querySelector(".dropdown-content .option:nth-child(2)");
-        
-        modifyContentMenuElement.addEventListener("click", (event) => {
-            if (!event.target.closest('.options-button')) {
-                const greatGrandParentElement = greatGrandParent(event.target);
-                const articleElement = grandParent(greatGrandParentElement);
-                makeNoteEditable(articleElement);
-            }
-        });
-    }
+export function addEditEvents() {
+    const modifyContentMenuElement = document.querySelector(".dropdown-content .option:nth-child(2)");
+    
+    modifyContentMenuElement.addEventListener("click", (event) => {
+        if (!event.target.closest('.options-button')) {
+            const greatGrandParentElement = greatGrandParent(event.target);
+            const articleElement = grandParent(greatGrandParentElement);
+            makeNoteEditable(articleElement);
+        }
+    });
+}
 
 
 /**
