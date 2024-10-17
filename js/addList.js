@@ -1,5 +1,6 @@
 //fonction d'ajout de liste via le bouton plus.
 import {fillInnerArticle, setClickOnArticle, setClickOnOptions} from "./tools.js"; 
+import {colorCategories} from "./color-categories.js";
 
 function createNewToDolist (){
     const newItem = document.createElement("article");
