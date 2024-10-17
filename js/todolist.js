@@ -71,5 +71,7 @@ const initialList = [
     },
 ]
 
-export default initialList;
-
+export function getToDoLists() {
+    const storedList = window.localStorage.getItem("to-do-lists");
+    return storedList !== null ? JSON.parse(storedList) : initialList;
+}

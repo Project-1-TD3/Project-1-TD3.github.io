@@ -1,4 +1,4 @@
-import initialList from "./todolist.js";
+import {initialList} from "./tools.js";
 
 
 export function getIndexFromArticleElement(htmlElement) {
