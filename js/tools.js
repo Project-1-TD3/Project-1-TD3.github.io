@@ -162,3 +162,27 @@ function addClickEventOnTask(htmlElement) {
  * THe list of todo lists.
  */
 export let initialList = getToDoLists();
+
+export function setClickOnDeleteOption(articleElement)  {
+const deleteOption = articleElement.querySelector(".dropdown-content .option:nth-child(3)");
+    deleteOption.addEventListener("click", (event) => {
+        if (confirm("Voulez-vous vraiment supprimer cette liste ?")) {
+            const article = event.target.closest('article');
+            article.remove();
+        }
+    });
+}
+
+//Fonction pour supprimer une liste avec le bouton d'option.
+export function addClickEventOnDeleteOption() {
+    // Sélectionner toutes les options "supprimer la liste" (3ème option dans chaque menu)
+    const deleteListOptions = document.querySelectorAll(".dropdown-content .option:nth-child(3)");
+        for(const deleteOption of deleteListOptions)    {
+        deleteOption.addEventListener("click", (event) => {
+            const articleElement = event.target.closest('article');
+                if (confirm("Voulez-vous vraiment supprimer cette liste ?")) {
+                    articleElement.remove();
+                    }
+                })
+        };
+    };
