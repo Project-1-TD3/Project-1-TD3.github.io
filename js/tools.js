@@ -25,9 +25,10 @@ export function fillInnerArticle(toDo) {
                     </div>
                     <div class="dropdown-content">
                         <ul>
-                            <li class="option" >créer une catégorie</li>
+                            <li class="option">créer une catégorie</li>
                             <li class="option">modifier le contenu</li>
                             <li class="option">supprimer la liste</li>
+                            <li class="option">ajouter une tâche</li>
                         </ul>
                     </div>
                 </div>
@@ -261,3 +262,56 @@ export function addClickEventOnDeleteOption() {
                 })
         };
     };
+
+export function setNewTask(articleElement) {
+    addTaskOption.addEventListener("click", (event) => {
+        const articleElement = event.target.closest('article');
+        const taskList = articleElement.querySelector('ul:nth-child(2)');
+        const taskName = "New task"
+            const newTask = articleElement.createElement("li");
+            newTask.innerHTML = `
+                <img src="./assets/checkbox-empty.svg" alt="checkbox-empty" class="checkbox">
+                <span>${taskName}</span>
+            `;
+            taskList.prepend(newTask);
+
+            const listIndex = getIndexFromArticleElement(articleElement);
+            initialList[listIndex].elements.unshift({
+                name: taskName,
+                checked: false
+            });
+            
+            const checkbox = newTask.querySelector("img.checkbox");
+            addClickEventOnTask(checkbox);
+            
+            saveInitialList();
+    });
+}
+
+//Ajouter de nouveaux éléments tasks
+export function addNewTask() {
+    const addTaskOptions = document.querySelectorAll(".dropdown-content .option:nth-child(4)"); 
+    for(const addTaskOption of addTaskOptions) {
+        addTaskOption.addEventListener("click", (event) => {
+            const articleElement = event.target.closest('article');
+            const taskList = articleElement.querySelector('ul:nth-child(2)');
+            const taskName = "New task"
+                const newTask = document.createElement("li");
+                newTask.innerHTML = `
+                    <img src="./assets/checkbox-empty.svg" alt="checkbox-empty" class="checkbox">
+                    <span>${taskName}</span>
+                `;
+                taskList.prepend(newTask);
+
+                const listIndex = getIndexFromArticleElement(articleElement);
+                initialList[listIndex].elements.unshift({
+                    name: taskName,
+                    checked: false
+                });
+                
+                const checkbox = newTask.querySelector("img.checkbox");
+                addClickEventOnTask(checkbox);
+                
+                saveInitialList();
+        });
+    }}
