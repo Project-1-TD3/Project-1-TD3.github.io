@@ -17,6 +17,8 @@ export function fillArticle(toDo) {
 }
 
 export function fillInnerArticle(toDo) {
+    const searchInputElement = document.querySelector(".search-input");
+    const disabledClassForInput = searchInputElement.value !== "" ? " inactive" : "";
     return `<div class="header-element">
                 <h3>${toDo.title}</h3>
                 <div class= "bloc-options">
@@ -25,11 +27,11 @@ export function fillInnerArticle(toDo) {
                     </div>
                     <div class="dropdown-content">
                         <ul>
-                            <li class="option">créer une catégorie</li>
-                            <li class="option">modifier le contenu</li>
-                            <li class="option">supprimer la liste</li>
-                            <li class="option">ajouter une tâche</li>
-                            <li class="option">supprimer les tâches cochées</li>
+                            <li class="option${disabledClassForInput}">créer une catégorie</li>
+                            <li class="option${disabledClassForInput}">modifier le contenu</li>
+                            <li class="option${disabledClassForInput}">supprimer la liste</li>
+                            <li class="option${disabledClassForInput}">ajouter une tâche</li>
+                            <li class="option${disabledClassForInput}">supprimer les tâches cochées</li>
                         </ul>
                     </div>
                 </div>
@@ -359,7 +361,7 @@ export function deleteTask()    {
 }
 
 export function setDeleteTask(articleElement)    {
-    const deleteTaskOption = articleElement.querySelectorAll(".dropdown-content .option:nth-child(5)");
+    const deleteTaskOption = articleElement.querySelector(".dropdown-content .option:nth-child(5)");
         deleteTaskOption.addEventListener("click", (event) => {
             const articleElement = event.target.closest("article");
             const checkedSpans = articleElement.querySelectorAll("span.checked");     
@@ -376,3 +378,36 @@ export function setDeleteTask(articleElement)    {
             saveInitialList();
         });
     }
+
+//Création de la fonction recherche
+//Récupérer la valeur de la barre de recherche
+export function keyDownInput() {
+    const searchElement = document.querySelector(".search-input");
+    searchElement.addEventListener("keydown", (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            const footerElement = document.querySelector('svg');
+            const searchValue = event.target.value;
+            if(searchValue !== "")    {
+                let regExpression = "\\b(" + searchValue.replace(" ", "|").toLowerCase() + ")\\b";
+                const filteredList = initialList.filter(value => value.title.toLowerCase().match(regExpression) || value.elements.some(item => item.name.toLowerCase().match(regExpression)));
+                fillNotesSection(filteredList);
+                footerElement.classList.add("inactive");
+                addClickForExpandCollapseOnArticles();
+                addClickEventOnOptionsButton();
+                keyDownInput();
+            }   else    {
+                fillNotesSection(initialList);
+                footerElement.classList.remove("inactive");
+                addClickForExpandCollapseOnArticles();
+                addClickOnTask();
+                addClickEventOnOptionsButton();
+                addEditEvents();
+                saveInitialList();
+                addClickEventOnDeleteOption();
+                addNewTask();
+                deleteTask();
+                keyDownInput();
+            }
+        } 
+    });
+}

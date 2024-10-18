@@ -349,3 +349,9 @@ article.editing li span {
     padding: 2px;
     border-radius: 5px;
 }
+
+.inactive {
+    pointer-events: none; /* Désactive les interactions avec l'élément */
+    opacity: 0.5; /* Rend l'élément visuellement inactif */
+    cursor: not-allowed; /* Change le curseur pour indiquer que l'élément n'est pas interactif */
+  }
