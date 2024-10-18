@@ -1,7 +1,7 @@
 //fonction d'ajout de liste via le bouton plus.
 import {fillInnerArticle, setClickForExpandCollapseOnArticle, setClickOnOptions,
         setClickOnTask, setClickOnDeleteOption, saveInitialList, initialList,
-        setNewTask, setEditEvent} from "./tools.js"; 
+        setNewTask, setDeleteTask, setEditEvent} from "./tools.js"; 
 import {colorCategories} from "./color-categories.js";
 
 function createNewToDolist (){
@@ -34,6 +34,7 @@ function createNewToDolist (){
     setClickOnDeleteOption(newItem);
     setNewTask(newItem);
     setEditEvent(newItem);
+    setDeleteTask(newItem);
     saveInitialList();
   }
 
