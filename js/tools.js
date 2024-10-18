@@ -157,7 +157,7 @@ function handleTitleKeydown(event) {
     }
 }
 
-export function makeNoteEditable(articleElement) {
+function makeNoteEditable(articleElement) {
     const title = articleElement.querySelector('h3');
     const tasks = articleElement.querySelectorAll('li span');
 
@@ -172,7 +172,7 @@ export function makeNoteEditable(articleElement) {
     articleElement.classList.add('editing');
 }
 
-export function saveNote(articleElement) {
+function saveNote(articleElement) {
     const title = articleElement.querySelector('h3');
     const tasks = articleElement.querySelectorAll('li span');
 
@@ -211,6 +211,16 @@ export function addEditEvents() {
     });
 }
 
+export function setEditEvent(articleElement) {
+    const modifyContentMenuElement = articleElement.querySelector(".dropdown-content .option:nth-child(2)");
+    modifyContentMenuElement.addEventListener("click", (event) => {
+        if (!event.target.closest('.options-button')) {
+            const greatGrandParentElement = greatGrandParent(event.target);
+            const articleElement = grandParent(greatGrandParentElement);
+            makeNoteEditable(articleElement);
+        }
+    });
+}
 
 /**
  * Stores list of todo lists under navigator.
@@ -272,6 +282,7 @@ export function addClickEventOnDeleteOption() {
     };
 
 export function setNewTask(articleElement) {
+    const addTaskOption = articleElement.querySelector(".dropdown-content .option:nth-child(4)"); 
     addTaskOption.addEventListener("click", (event) => {
         const articleElement = event.target.closest('article');
         const taskList = articleElement.querySelector('ul:nth-child(2)');

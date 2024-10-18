@@ -1,5 +1,7 @@
 //fonction d'ajout de liste via le bouton plus.
-import {fillInnerArticle, setClickForExpandCollapseOnArticle, setClickOnOptions, setClickOnTask, setClickOnDeleteOption, saveInitialList, initialList, makeNoteEditable, saveNote,} from "./tools.js"; 
+import {fillInnerArticle, setClickForExpandCollapseOnArticle, setClickOnOptions,
+        setClickOnTask, setClickOnDeleteOption, saveInitialList, initialList,
+        setNewTask, setEditEvent} from "./tools.js"; 
 import {colorCategories} from "./color-categories.js";
 
 function createNewToDolist (){
@@ -30,8 +32,9 @@ function createNewToDolist (){
     setClickOnOptions(newItem);
     setClickOnTask(newItem);
     setClickOnDeleteOption(newItem);
-    saveInitialList();
     setNewTask(newItem);
+    setEditEvent(newItem);
+    saveInitialList();
   }
 
   function getRandomColor() {
