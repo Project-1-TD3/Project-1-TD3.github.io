@@ -1,5 +1,5 @@
 import {fillNotesSection, addClickForExpandCollapseOnArticles, addClickOnTask,
-       addClickEventOnOptionsButton, addClickEventOnDeleteOption, addNewTask,
+       addClickEventOnOptionsButton, addClickEventOnDeleteOption, addNewTask, deleteTask,
        saveInitialList, initialList, addEditEvents} from "./tools.js";
 import createNewToDolist from "./addList.js";
 
@@ -14,3 +14,4 @@ addEditEvents();
 saveInitialList();
 addClickEventOnDeleteOption();
 addNewTask();
+deleteTask();

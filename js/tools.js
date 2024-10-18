@@ -29,6 +29,7 @@ export function fillInnerArticle(toDo) {
                             <li class="option">modifier le contenu</li>
                             <li class="option">supprimer la liste</li>
                             <li class="option">ajouter une tâche</li>
+                            <li class="option">supprimer les tâches cochées</li>
                         </ul>
                     </div>
                 </div>
@@ -334,3 +335,44 @@ export function addNewTask() {
                 saveInitialList();
         });
     }}
+
+//Fonction supprimer une tâche
+export function deleteTask()    {
+    const deleteTaskOptions = document.querySelectorAll(".dropdown-content .option:nth-child(5)");
+    for (const deleteTaskOption of deleteTaskOptions) {
+        deleteTaskOption.addEventListener("click", (event) => {
+            const articleElement = event.target.closest("article");
+            const checkedSpans = articleElement.querySelectorAll("span.checked");     
+ 
+            for (const checkedSpanElement of checkedSpans)  {
+                const liElement = checkedSpanElement.parentElement;
+                if(liElement !== null)  {
+                    const spanFound = getListObjectAndIndexOfTaskElement(checkedSpanElement);
+                    spanFound.listObject.elements.splice(spanFound.indexOfTask, 1);
+                    liElement.remove();
+                }
+            } 
+            
+            saveInitialList();
+        });
+    }
+}
+
+export function setDeleteTask(articleElement)    {
+    const deleteTaskOption = articleElement.querySelectorAll(".dropdown-content .option:nth-child(5)");
+        deleteTaskOption.addEventListener("click", (event) => {
+            const articleElement = event.target.closest("article");
+            const checkedSpans = articleElement.querySelectorAll("span.checked");     
+ 
+            for (const checkedSpanElement of checkedSpans)  {
+                const liElement = checkedSpanElement.parentElement;
+                if(liElement !== null)  {
+                    const spanFound = getListObjectAndIndexOfTaskElement(checkedSpanElement);
+                    spanFound.listObject.elements.splice(spanFound.indexOfTask, 1);
+                    liElement.remove();
+                }
+            } 
+            
+            saveInitialList();
+        });
+    }
