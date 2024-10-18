@@ -290,7 +290,7 @@ export function setNewTask(articleElement) {
         const articleElement = event.target.closest('article');
         const taskList = articleElement.querySelector('ul:nth-child(2)');
         const taskName = "New task"
-            const newTask = articleElement.createElement("li");
+            const newTask = document.createElement("li");
             newTask.innerHTML = `
                 <img src="./assets/checkbox-empty.svg" alt="checkbox-empty" class="checkbox">
                 <span>${taskName}</span>
